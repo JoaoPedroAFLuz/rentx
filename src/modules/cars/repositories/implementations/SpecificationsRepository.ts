@@ -1,11 +1,11 @@
-import { Specification } from '../model/Specification';
+import { Specification } from '../../model/Specification';
 
 import {
   ICreateSpecificationDTO,
   ISpecificationRepository,
-} from './ISpecificationsRepository';
+} from '../ISpecificationsRepository';
 
-export class SpecificationsRepository implements ISpecificationRepository {
+class SpecificationsRepository implements ISpecificationRepository {
   private specifications: Specification[];
 
   constructor() {
@@ -32,3 +32,5 @@ export class SpecificationsRepository implements ISpecificationRepository {
     this.specifications.push(newSpecification);
   }
 }
+
+export { SpecificationsRepository };
