@@ -9,7 +9,7 @@ class ImportCategoryController {
 
     this.importCategoryUseCase.execute(file);
 
-    return response.json({ data: file });
+    return response.sendStatus(201);
   }
 }
 
