@@ -7,8 +7,6 @@ class CreateCategoryController {
   handle(request: Request, response: Response): Response {
     const { name, description } = request.body;
 
-    console.log('This:', this);
-
     this.createCategoryUseCase.execute({ name, description });
 
     return response.sendStatus(201);
