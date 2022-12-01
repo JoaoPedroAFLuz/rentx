@@ -4,10 +4,14 @@ import { ListCategoriesUseCase } from './ListCategoriesUseCase';
 class ListCategoriesController {
   constructor(private listCategoryUseCase: ListCategoriesUseCase) {}
 
-  handle(request: Request, response: Response): Response {
-    const categories = this.listCategoryUseCase.execute();
+  async handle(request: Request, response: Response): Promise<Response> {
+    try {
+      const categories = await this.listCategoryUseCase.execute();
 
-    return response.json(categories);
+      return response.json(categories);
+    } catch (error) {
+      return response.status(500).json({ error: error.message });
+    }
   }
 }
 
