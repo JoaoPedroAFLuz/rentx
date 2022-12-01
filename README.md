@@ -1,4 +1,4 @@
-## 🚗 RentalX - API de aluguel de carros
+## 🚗 RentX - API de aluguel de carros
 
 ###  ✅ Requisitos
 
