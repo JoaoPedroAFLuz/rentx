@@ -1,10 +1,31 @@
-version: "3.7"
+version: '3.9'
 
 services:
-  app:
-    container_name: RentalX
+  database:
+    container_name: database_rentx
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=ignite
+      - POSTGRES_DB=rentx
+    volumes:
+      - pgdata:/data/postgres
+
+  api:
+    container_name: api
     build: .
     ports:
       - 3333:3333
+      - 9229:9229
     volumes:
       - .:/usr/app
+    links:
+      - database
+    depends_on:
+      - database
+
+volumes:
+  pgdata:
+    driver: local
