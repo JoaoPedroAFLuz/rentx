@@ -32,6 +32,7 @@
           "match": true
         }
       }
-    ]
+    ],
+    "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "next" }]
   }
 }
