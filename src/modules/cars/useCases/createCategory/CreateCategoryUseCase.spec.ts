@@ -31,7 +31,7 @@ describe('Create category', () => {
     expect(categoryCreated.name).toBe('Category Name');
   });
 
-  it("shouldn't be able to create a new category with name in use", async () => {
+  it('should not be able to create a new category with name in use', async () => {
     expect(async () => {
       const category = {
         name: 'Category Name',
