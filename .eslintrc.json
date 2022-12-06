@@ -19,7 +19,6 @@
   "plugins": ["@typescript-eslint", "prettier"],
   "rules": {
     "linebreak-style": ["error", "unix"],
-    "quotes": ["error", "single"],
     "semi": ["error", "always"],
     "prettier/prettier": "error",
     "@typescript-eslint/naming-convention": [
