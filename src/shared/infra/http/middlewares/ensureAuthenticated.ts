@@ -8,7 +8,7 @@ interface IPayload {
   sub: string;
 }
 
-async function ensureAthenticated(
+async function ensureAuthenticated(
   request: Request,
   response: Response,
   next: NextFunction
@@ -41,4 +41,4 @@ async function ensureAthenticated(
   }
 }
 
-export { ensureAthenticated };
+export { ensureAuthenticated };
