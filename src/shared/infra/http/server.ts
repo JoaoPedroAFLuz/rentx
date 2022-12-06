@@ -3,8 +3,7 @@ import swaggerUi from 'swagger-ui-express';
 import 'express-async-errors';
 
 import '@shared/infra/typeorm';
-import '../../container';
-
+import '@shared/container';
 import { router } from './routes';
 import swaggerFile from '../../../swagger.json';
 import { AppError } from '@shared/errors/AppError';
