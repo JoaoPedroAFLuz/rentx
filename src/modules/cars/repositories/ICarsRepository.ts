@@ -8,6 +8,8 @@ interface ICarsRepository {
     category_id: string
   ): Promise<Car[]>;
 
+  findById(id: string): Promise<Car>;
+
   findByName(name: string): Promise<Car>;
 
   findByLicensePlate(license_plate: string): Promise<Car>;
