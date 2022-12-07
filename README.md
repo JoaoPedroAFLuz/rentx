@@ -26,12 +26,12 @@
 ## Cadastro de especificação no carro:
 
 **RF**
-- [ ] Deve ser possível cadastrar uma especificação para um carro;
+- [x] Deve ser possível cadastrar uma especificação para um carro;
 
 **RN**
-- [ ] Não deve ser possível cadastrar uma especificação para um carro não cadastrado;
-- [ ] Não deve ser possível cadastrar uma especificação já existente no carro;
-- [ ] O usuário responsável pelo cadastro deve ser um usuário administrador;
+- [x] Não deve ser possível cadastrar uma especificação para um carro não cadastrado;
+- [x] Não deve ser possível cadastrar uma especificação já existente no carro;
+- [x] O usuário responsável pelo cadastro deve ser um usuário administrador;
 
 ## Cadastro de imagens do carro:
 
