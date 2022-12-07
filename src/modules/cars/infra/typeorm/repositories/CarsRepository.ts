@@ -1,6 +1,7 @@
+import { getRepository, Repository } from 'typeorm';
+
 import { ICreateCarDTO } from '@modules/cars/dtos/ICreateCarDTO';
 import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository';
-import { Repository, getRepository } from 'typeorm';
 import { Car } from '../entities/Car';
 
 class CarsRepository implements ICarsRepository {
@@ -10,12 +11,28 @@ class CarsRepository implements ICarsRepository {
     this.repository = getRepository(Car);
   }
 
-  findAvailable(
+  async findAvailable(
     name: string,
     brand: string,
     category_id: string
   ): Promise<Car[]> {
-    throw new Error('Method not implemented.');
+    const carsQuery = this.repository
+      .createQueryBuilder('cars')
+      .where('available = :available', { available: true });
+
+    if (name) {
+      carsQuery.andWhere('cars.name = :name', { name });
+    }
+
+    if (brand) {
+      carsQuery.andWhere('cars.brand = :brand', { brand });
+    }
+
+    if (category_id) {
+      carsQuery.andWhere('cars.category_id = :category_id', { category_id });
+    }
+
+    return await carsQuery.getMany();
   }
 
   async findByName(name: string): Promise<Car> {
