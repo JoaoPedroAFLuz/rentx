@@ -10,6 +10,14 @@ class CarsRepository implements ICarsRepository {
     this.repository = getRepository(Car);
   }
 
+  findAvailable(
+    name: string,
+    brand: string,
+    category_id: string
+  ): Promise<Car[]> {
+    throw new Error('Method not implemented.');
+  }
+
   async findByName(name: string): Promise<Car> {
     return await this.repository.findOne({ name });
   }
