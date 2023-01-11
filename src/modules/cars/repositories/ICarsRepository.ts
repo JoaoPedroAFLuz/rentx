@@ -15,6 +15,8 @@ interface ICarsRepository {
   findByLicensePlate(license_plate: string): Promise<Car>;
 
   create(data: ICreateCarDTO): Promise<Car>;
+
+  updateAvailable(id: string, available: boolean): Promise<void>;
 }
 
 export { ICarsRepository };
