@@ -1,5 +1,5 @@
 import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository';
-import { ICreateRentalDTO } from '@modules/rentals/dtos/CreateRentalDTO';
+import { ICreateRentalDTO } from '@modules/rentals/dtos/ICreateRentalDTO';
 import { Rental } from '@modules/rentals/infra/typeorm/entities/Rental';
 import { IRentalsRepository } from '@modules/rentals/repositories/IRentalsRepository';
 import { IDateProvider } from '@shared/container/providers/dateProvider/IDateProvider';
@@ -24,7 +24,7 @@ class CreateRentalUseCase {
   }: ICreateRentalDTO): Promise<Rental> {
     const rentalMinimumHours = 24;
 
-    const compare = this.dateProvider.compare(
+    const compare = this.dateProvider.compareInHours(
       this.dateProvider.dateNow(),
       expected_return_date
     );
