@@ -24,6 +24,14 @@ class CreateRentalUseCase {
   }: ICreateRentalDTO): Promise<Rental> {
     const rentalMinimumHours = 24;
 
+    const userHasOpenRental = await this.rentalsRepository.findOpenRentalByUser(
+      user_id
+    );
+
+    if (userHasOpenRental) {
+      throw new AppError('User already have an open rental');
+    }
+
     const compare = this.dateProvider.compareInHours(
       this.dateProvider.dateNow(),
       expected_return_date
@@ -39,14 +47,6 @@ class CreateRentalUseCase {
 
     if (carUnavailable) {
       throw new AppError('Car is unavailable');
-    }
-
-    const userHasOpenRental = await this.rentalsRepository.findOpenRentalByUser(
-      user_id
-    );
-
-    if (userHasOpenRental) {
-      throw new AppError('User already have an open rental');
     }
 
     const rental = await this.rentalsRepository.create({
