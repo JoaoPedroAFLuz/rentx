@@ -2,13 +2,80 @@
   "openapi": "3.0.0",
   "info": {
     "title": "RentX Documentation",
-    "description": "This is an API Rent",
+    "description": "This is an Rent API",
     "version": "1.0.0",
     "contact": {
       "email": "joao.pedro.luz@hotmail.com"
     }
   },
   "paths": {
+    "/cars": {
+      "post": {
+        "tags": ["Cars"],
+        "summary": "Create car",
+        "description": "Create a new car",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Car"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Car already exists"
+          }
+        }
+      }
+    },
+    "/cars/{id}/images": {
+      "post": {
+        "tags": ["Cars"],
+        "summary": "Upload car image",
+        "description": "Upload an image to a car",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Car id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "images": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
     "/categories": {
       "get": {
         "tags": ["Categories"],
@@ -48,6 +115,7 @@
         "tags": ["Categories"],
         "summary": "Create category",
         "description": "Create a new category",
+        "security": [{ "bearerAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -84,6 +152,7 @@
         "tags": ["Categories"],
         "summary": "Upload file with categories",
         "description": "Create new categories by csv file",
+        "security": [{ "bearerAuth": [] }],
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -111,6 +180,7 @@
         "tags": ["Specifications"],
         "summary": "Create a specification",
         "description": "Create a new specification",
+        "security": [{ "bearerAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -129,6 +199,42 @@
           }
         }
       }
+    },
+    "/sessions": {
+      "post": {
+        "tags": ["Sessions"],
+        "summary": "Authentication user",
+        "description": "Authentication user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "email": "admin@rentx.com.br",
+                  "password": "admin"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Authorized"
+          },
+          "400": {
+            "description": "Email or password incorrect"
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -141,6 +247,27 @@
         "description": {
           "type": "string"
         }
+      }
+    },
+    "Car": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "daily_rate": { "type": "number" },
+        "license_plate": { "type": "string" },
+        "fine_amount": { "type": "number" },
+        "brand": { "type": "string" },
+        "category_id": { "type": "string" }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }

@@ -48,7 +48,6 @@ class DevolutionRentalUseCase {
     let total = 0;
 
     if (delay > 0) {
-      console.log('Entrou no delay');
       const calculate_fine = delay * car.fine_amount;
       total = calculate_fine;
     }
