@@ -16,6 +16,7 @@ rentalsRoutes.get(
   ensureAuthenticated,
   listRentalsByUserController.handle
 );
+
 rentalsRoutes.post('', ensureAuthenticated, createRentalController.handle);
 rentalsRoutes.post(
   '/devolution/:id',

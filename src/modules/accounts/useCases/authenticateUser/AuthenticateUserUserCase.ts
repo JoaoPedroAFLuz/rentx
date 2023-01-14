@@ -18,7 +18,7 @@ interface IResponse {
     email: string;
     name: string;
   };
-  token: string;
+  access_token: string;
   refresh_token: string;
 }
 
@@ -46,12 +46,12 @@ class AuthenticateUserUseCase {
       throw new AppError('Email or password incorrect', 401);
     }
 
-    const token = sign({}, auth.secret_token, {
+    const access_token = sign({}, auth.secret_access_token, {
       subject: user.id,
-      expiresIn: auth.expires_in,
+      expiresIn: auth.expires_in_access_token,
     });
 
-    const refresh_token = sign({ email }, auth.secrete_refresh_token, {
+    const refresh_token = sign({ email }, auth.secret_refresh_token, {
       subject: user.id,
       expiresIn: auth.expires_in_refresh_token,
     });
@@ -71,7 +71,7 @@ class AuthenticateUserUseCase {
         email: user.email,
         name: user.name,
       },
-      token,
+      access_token,
       refresh_token,
     };
   }

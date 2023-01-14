@@ -15,17 +15,20 @@ async function ensureAuthenticated(
   next: NextFunction
 ) {
   const authHeader = request.headers.authorization;
+  const usersRepository = new UsersRepository();
 
   if (!authHeader) {
     throw new AppError('Token missing', 401);
   }
 
-  const [, token] = authHeader.split(' ');
+  const [, access_token] = authHeader.split(' ');
 
   try {
-    const { sub: user_id } = verify(token, auth.secret_token) as IPayload;
+    const { sub: user_id } = verify(
+      access_token,
+      auth.secret_access_token
+    ) as IPayload;
 
-    const usersRepository = new UsersRepository();
     const user = await usersRepository.findById(user_id);
 
     if (!user) {
