@@ -6,11 +6,6 @@ import { IDateProvider } from '@shared/container/providers/dateProvider/IDatePro
 import { AppError } from '@shared/errors/AppError';
 import { Rental } from '@modules/rentals/infra/typeorm/entities/Rental';
 
-interface IRequest {
-  id: string;
-  user_id: string;
-}
-
 @injectable()
 class DevolutionRentalUseCase {
   constructor(
@@ -22,7 +17,7 @@ class DevolutionRentalUseCase {
     private dateProvider: IDateProvider
   ) {}
 
-  async execute({ id, user_id }: IRequest): Promise<Rental> {
+  async execute(id: string): Promise<Rental> {
     const minimum_daily = 1;
 
     const rental = await this.rentalsRepository.findById(id);

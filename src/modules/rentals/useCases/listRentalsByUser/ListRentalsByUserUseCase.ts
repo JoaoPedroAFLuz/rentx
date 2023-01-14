@@ -10,8 +10,8 @@ class ListRentalsByUserUseCase {
     private rentalsRepository: IRentalsRepository
   ) {}
 
-  async execute(user_id): Promise<Rental[]> {
-    return this.rentalsRepository.findByUser(user_id);
+  async execute(user_id: string): Promise<Rental[]> {
+    return await this.rentalsRepository.findByUser(user_id);
   }
 }
 
