@@ -18,6 +18,10 @@ class UsersTokensRepository implements IUsersTokensRepository {
     return await this.repository.findOne({ user_id, refresh_token });
   }
 
+  async findByRefreshToken(refresh_token: string): Promise<UserTokens> {
+    return await this.repository.findOne({ refresh_token });
+  }
+
   create(data: ICreateUserTokenDTO): Promise<UserTokens> {
     const userToken = this.repository.create(data);
 

@@ -21,15 +21,23 @@ class DayjsDateProvider implements IDateProvider {
     return dayjs(formattedEndDate).diff(formattedStartDate, 'hours');
   }
 
-  compareInDays(end_date: Date, start_date: Date): number {
+  compareInDays(start_date: Date, end_date: Date): number {
     const formattedStartDate = this.convertToUTC(start_date);
     const formattedEndDate = this.convertToUTC(end_date);
 
     return dayjs(formattedEndDate).diff(formattedStartDate, 'days');
   }
 
+  compareIfBefore(start_date: Date, end_date: Date): boolean {
+    return dayjs(start_date).isBefore(end_date);
+  }
+
   addDays(days: number): Date {
     return dayjs().add(days, 'days').toDate();
+  }
+
+  addHours(hours: number): Date {
+    return dayjs().add(hours, 'hour').toDate();
   }
 }
 
