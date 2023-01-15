@@ -15,6 +15,12 @@ class UsersTokensRepositoryInMemory implements IUsersTokensRepository {
     });
   }
 
+  async findByRefreshToken(refresh_token: string): Promise<UserTokens> {
+    return this.repository.find((userToken) => {
+      userToken.refresh_token === refresh_token;
+    });
+  }
+
   async create(data: ICreateUserTokenDTO): Promise<UserTokens> {
     const newUserToken = new UserTokens();
 
