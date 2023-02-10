@@ -1,7 +1,22 @@
-/coverage
+# Dependencies
 node_modules
+
+# Covarage
+coverage
+
+# Build
 dist
-tmp
+
+# Temporary
+tmp/*
+!tmp/.gitkeep
+
+# Environment
+.env
+
+# Configurations
+ormconfig.json
+
+# Others
 .obsidian
 yarn-error.log
-.env
