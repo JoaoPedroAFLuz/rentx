@@ -1,6 +1,6 @@
 # 🚗 RentX - API de aluguel de carros
 
-API desenvolvida utilizando Node.js, Express, Postgres, TypeORM, JWT e AWS (deploy e envio de e-mails)
+API desenvolvida utilizando Node.js, Express, Postgres, TypeORM, JWT e AWS (deploy e envio de e-mails).
 
 ## Requisitos e Regras de negócio:
 
